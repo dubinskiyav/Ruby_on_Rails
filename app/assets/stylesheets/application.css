@@ -1,0 +1,164 @@
+/* Base */
+.site-body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* Gelicon Pro branding */
+.gelicon-hero {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 4rem;
+  color: #4a6b7c;
+}
+
+.gelicon-hero-title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 0.5rem 0;
+}
+
+.gelicon-hero-text {
+  font-size: 1.1rem;
+  color: #6b8a9c;
+  margin: 0;
+}
+
+/* Site header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-utility {
+  background: #3d5a6c;
+  padding: 0.5rem 0;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header-login {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.header-login:hover {
+  text-decoration: underline;
+}
+
+.header-main {
+  background: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.header-main-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-brand:hover {
+  color: inherit;
+}
+
+.header-logo {
+  width: 48px;
+  height: 48px;
+  color: #4a6b7c;
+  flex-shrink: 0;
+}
+
+.header-logo .logo-accent {
+  fill: #c9a227;
+}
+
+.header-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #4a6b7c;
+}
+
+.header-tagline {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b8a9c;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: #6b8a9c;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.nav-link:hover,
+.nav-link--active {
+  color: #4a6b7c;
+}
+
+.header-accent {
+  height: 6px;
+  background: #7ba3b8;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.page-content h1 {
+  color: #4a6b7c;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,35 @@
+<header class="site-header">
+  <div class="header-utility">
+    <div class="header-container">
+      <%= link_to "Вход и регистрация", "#", class: "header-login" %>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="header-container header-main-inner">
+      <%= link_to root_path, class: "header-brand" do %>
+        <div class="header-logo">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M6 6 L10 6 L10 20 L24 20 L24 24 L6 24 Z" class="logo-accent"/>
+          </svg>
+        </div>
+        <div class="header-brand-text">
+          <span class="header-title">Gelicon Pro</span>
+          <span class="header-tagline">ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ВАШЕГО БИЗНЕСА</span>
+        </div>
+      <% end %>
+
+      <nav class="header-nav">
+        <%= link_to "О компании", about_path, class: "nav-link #{'nav-link--active' if current_page?(about_path)}" %>
+        <%= link_to "Продукты и решения", products_path, class: "nav-link #{'nav-link--active' if current_page?(products_path)}" %>
+        <%= link_to "Услуги", services_path, class: "nav-link #{'nav-link--active' if current_page?(services_path)}" %>
+        <%= link_to "Опыт", experience_path, class: "nav-link #{'nav-link--active' if current_page?(experience_path)}" %>
+        <%= link_to "Пресс-центр", press_path, class: "nav-link #{'nav-link--active' if current_page?(press_path)}" %>
+        <%= link_to "Поддержка", support_path, class: "nav-link #{'nav-link--active' if current_page?(support_path)}" %>
+      </nav>
+    </div>
+  </div>
+
+  <div class="header-accent"></div>
+</header>
