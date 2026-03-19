@@ -1,92 +1,38 @@
-# Пересборка и деплой на сервере
+#
+# DEPLOY.md
+#
+# Деплой на сервере — полная инструкция
 
-## Вариант 1: Kamal (рекомендуется)
+## Docker Compose
 
-Если сервер настроен через Kamal:
-
-```bash
-# Сборка образа и деплой
-bin/kamal deploy
-
-# Только пересборка без деплоя
-bin/kamal build push
-bin/kamal deploy
-```
-
-Перед деплоем проверьте `config/deploy.yml` — укажите IP сервера и настройте registry.
-
----
-
-## Вариант 2: Docker Compose
-
-Если на сервере используется Docker Compose:
+Подключитесь к серверу по SSH и выполните:
 
 ```bash
-# Подтянуть изменения
+# 1. Перейти в папку проекта
+cd /opt/gelicon-pro
+
+# 2. Подтянуть код
 git pull
 
-# Пересобрать образ и перезапустить
-docker compose build --no-cache
-docker compose up -d
-
-# Или одной командой
+# 3. Собрать образ и запустить
 docker compose up -d --build
-```
 
----
-
-## Вариант 3: Ручной Docker
-
-```bash
-git pull
-
-# Собрать образ
-docker build -t ruby_on_rails .
-
-# Остановить старый контейнер
-docker stop ruby_on_rails
-docker rm ruby_on_rails
-
-# Запустить новый
-docker run -d -p 80:80 \
-  -e RAILS_MASTER_KEY=<значение из config/master.key> \
-  -v ruby_on_rails_storage:/rails/storage \
-  --name ruby_on_rails \
-  --restart unless-stopped \
-  ruby_on_rails
-```
-
----
-
-## Вариант 4: Без Docker (Puma, systemd)
-
-```bash
-cd /path/to/Ruby_on_Rails
-
-git pull
-bundle install --without development test
-bin/rails assets:precompile
-bin/rails db:migrate  # если есть миграции
-
-# Перезапустить приложение
-sudo systemctl restart ruby_on_rails
-# или
-bundle exec pumactl restart
-```
-
----
-
-## Миграции БД
-
-При наличии миграций:
-
-```bash
-# Kamal
-bin/kamal app exec "bin/rails db:migrate"
-
-# Docker Compose
+# 4. Миграции (создать таблицы)
 docker compose exec web bin/rails db:migrate
 
-# Docker
-docker exec ruby_on_rails bin/rails db:migrate
+# 5. Загрузить новости (при первом деплое или для обновления)
+docker compose exec web bin/rails db:seed
+```
+
+**Перед первым запуском:** создайте файл `.env` с переменной `RAILS_MASTER_KEY` (скопируйте значение из `config/master.key`).
+
+---
+
+## Краткая шпаргалка
+
+```bash
+git pull
+docker compose up -d --build
+docker compose exec web bin/rails db:migrate
+docker compose exec web bin/rails db:seed
 ```
