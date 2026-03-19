@@ -1,0 +1,45 @@
+<div class="about-page products-page">
+  <nav class="breadcrumbs">
+    <%= link_to "Главная", root_path %> &gt;
+    <%= link_to "Продукты и решения", products_path %><% if local_assigns[:breadcrumb_parent].present? %> &gt; <%= link_to breadcrumb_parent[:text], breadcrumb_parent[:path], class: "breadcrumbs-link" %><% end %><% if local_assigns[:breadcrumb_current].present? %> &gt; <span class="breadcrumbs-current"><%= breadcrumb_current %></span><% end %>
+  </nav>
+
+  <header class="about-header">
+    <div class="about-header-inner">
+      <h1 class="about-header-title">Продукты и решения</h1>
+    </div>
+  </header>
+
+  <div class="about-body">
+    <aside class="about-sidebar">
+      <nav class="about-nav">
+        <%= link_to "Gelicon ERP", product_path("gelicon-erp"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'gelicon-erp'}" %>
+        <%= link_to "Gelicon Utilities", product_path("gelicon-utilities"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'gelicon-utilities'}" %>
+        <%= link_to "Gelicon Conference", product_path("gelicon-conference"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'gelicon-conference'}" %>
+        <%= link_to "Gelios", product_path("gelios"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'gelios'}" %>
+        <%= link_to "Атлант", product_path("atlant"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'atlant'}" %>
+        <div class="about-nav-group">
+          <%= link_to "Gelicon Core", product_path("gelicon-core"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'gelicon-core' && !@products_subpage}" %>
+          <%= link_to "Прайс-лист", product_gelicon_core_pricelist_path, class: "about-nav-link about-nav-link--sub #{'about-nav-link--active' if @products_subpage == 'pricelist'}" %>
+        </div>
+        <%= link_to "Капитал CSE", product_path("kapital-cse"), class: "about-nav-link #{'about-nav-link--active' if @product_slug == 'kapital-cse'}" %>
+      </nav>
+      <% if @product_slug == 'gelicon-core' && !@products_subpage %>
+        <div class="about-sidebar-links">
+          <h4 class="about-sidebar-links-title">Ссылки</h4>
+          <ul class="about-sidebar-links-list">
+            <li><%= link_to "Инструкция пользователя по скачиванию и установке дистрибутива", "#", class: "about-sidebar-link" %></li>
+            <li><%= link_to "Описание функциональных характеристик программного обеспечения", "#", class: "about-sidebar-link" %></li>
+            <li><%= link_to "Описание процессов, обеспечивающих поддержание жизненного цикла", "#", class: "about-sidebar-link" %></li>
+            <li><%= link_to "Инструкция по эксплуатации программного обеспечения", "#", class: "about-sidebar-link" %></li>
+            <li><%= link_to "Дистрибутив", "#", class: "about-sidebar-link" %></li>
+          </ul>
+        </div>
+      <% end %>
+    </aside>
+
+    <main class="about-content">
+      <%= yield %>
+    </main>
+  </div>
+</div>

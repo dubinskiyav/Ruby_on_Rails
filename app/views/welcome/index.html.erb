@@ -1,6 +1,94 @@
 <% content_for :title, "Главная - Геликон Про" %>
 
 <div class="gelicon-hero">
-  <h1 class="gelicon-hero-title">Добро пожаловать</h1>
-  <p class="gelicon-hero-text">Программное обеспечение вашего бизнеса</p>
+  <h1 class="gelicon-hero-title">Gelicon Utilities</h1>
+  <p class="gelicon-hero-text">Решение для автоматизации коммунальных сетевых компаний</p>
+  <p class="gelicon-hero-desc">Комплексное решение, охватывающее основные процессы обслуживания сетевой инфраструктуры коммунальных компаний, позволяет значительно повысить эффективность работы подразделений за счёт сокращения временных и материальных затрат, снизить аварийность, а также в целом повысить эффективность работы предприятия.</p>
+  <%= link_to "Подробности", products_path, class: "btn btn-primary" %>
 </div>
+
+<section class="home-section home-services">
+  <div class="container">
+    <h2 class="section-title">Продукты и решения</h2>
+    <div class="cards-grid cards-grid--3">
+      <article class="card">
+        <h3 class="card-title">Gelicon Utilities</h3>
+        <p class="card-subtitle">Решение для автоматизации коммунальных сетевых компаний</p>
+        <p class="card-text">Комплексное решение, охватывающее основные процессы обслуживания сетевой инфраструктуры коммунальных компаний.</p>
+        <%= link_to "Подробности", products_path, class: "card-link" %>
+      </article>
+      <article class="card">
+        <h3 class="card-title">Разработка сайтов любой сложности</h3>
+        <p class="card-subtitle">Корпоративные порталы, личные кабинеты</p>
+        <p class="card-text">Иметь своё представительство в интернете по нашим временам не роскошь, а жизненная необходимость. Сайты компаний выполняют функцию не только виртуальных представительств, но и успешно продают товары и услуги.</p>
+        <%= link_to "Подробности", services_path, class: "card-link" %>
+      </article>
+      <article class="card">
+        <h3 class="card-title">Разработка уникального ПО на заказ</h3>
+        <p class="card-subtitle">Создание уникальных программных продуктов</p>
+        <p class="card-text">Ваши бизнес-процессы не вписываются в возможности коробочных продуктов — мы готовы создать для вас уникальное ПО любой сложности.</p>
+        <%= link_to "Подробности", services_path, class: "card-link" %>
+      </article>
+    </div>
+
+    <ul class="services-list">
+      <li>Создание уникальных заказных решений</li>
+      <li>Разработка интернет-ресурсов</li>
+      <li>Разработка мобильных приложений</li>
+      <li>Интеграция информационных систем</li>
+      <li>Сопровождение информационных систем</li>
+      <li>ИТ-консалтинг</li>
+    </ul>
+  </div>
+</section>
+
+<section class="home-section home-projects">
+  <div class="container">
+    <h2 class="section-title">Реализованные проекты</h2>
+    <div class="cards-grid cards-grid--2">
+      <article class="card card--project">
+        <h3 class="card-subtitle">Решение для цифровизации процессов ТОиР</h3>
+        <h4 class="card-title">Российские коммунальные системы</h4>
+        <p class="card-text">Создано решение для цифровизации процессов технического обслуживания и ремонта сетей водоснабжения и водоотведения. Предикативная аналитика в сфере ЖКХ. Система постоянно развивается и дополняется в соответствии с требованиями бизнеса.</p>
+      </article>
+      <article class="card card--project">
+        <h3 class="card-subtitle">Решение для цифровизации процессов транспортной логистики</h3>
+        <h4 class="card-title">Т Плюс Самара</h4>
+        <p class="card-text">Создано решение для управления транспортными работами, повышающее эффективность использования автопарка за счёт качественной диспетчеризации, оптимизации маршрутов, дозагрузки транспорта, сокращения простоев и т.п.</p>
+      </article>
+    </div>
+    <%= link_to "Все проекты", experience_path, class: "btn btn-secondary" %>
+  </div>
+</section>
+
+<section class="home-section home-news">
+  <div class="container">
+    <h2 class="section-title">Новости</h2>
+    <div class="news-list">
+      <article class="news-item">
+        <time class="news-date" datetime="2025-12-17">17.12.2025</time>
+        <p class="news-text">Под конец года завершаются большинство проектов, в том числе происходит сдача интерактивных форм для портала госуслуг некоторых регионов. В частности, Иркутская область и Курская область.</p>
+      </article>
+      <article class="news-item">
+        <time class="news-date" datetime="2025-07-10">10.07.2025</time>
+        <p class="news-text">Завершён проект по доработке Автоматизированной информационной системы «Госуслуги» города Хабаровска.</p>
+      </article>
+      <article class="news-item">
+        <time class="news-date" datetime="2025-06-30">30.06.2025</time>
+        <p class="news-text">Мы возобновили сотрудничество с ведущим производителем кабельной продукции в России — Рыбинским кабельным заводом.</p>
+      </article>
+    </div>
+    <%= link_to "Все новости", press_path, class: "btn btn-secondary" %>
+  </div>
+</section>
+
+<section class="home-section home-contact">
+  <div class="container">
+    <h2 class="section-title">Свяжитесь с нами</h2>
+    <p class="contact-intro">Отправьте сообщение или закажите обратный звонок</p>
+    <div class="contact-actions">
+      <%= link_to "Отправить сообщение", "#", class: "btn btn-primary" %>
+      <%= link_to "Заказать обратный звонок", "#", class: "btn btn-outline" %>
+    </div>
+  </div>
+</section>

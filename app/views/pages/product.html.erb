@@ -1,0 +1,7 @@
+<% content_for :title, "#{@product[:name]} - Продукты и решения - Геликон Про" %>
+
+<%= render layout: "application/products_layout", locals: { breadcrumb_current: @product[:name] } do %>
+  <h2 class="about-page-title"><%= @product[:name] %></h2>
+
+  <p><%= @product[:desc] %></p>
+<% end %>

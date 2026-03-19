@@ -1,0 +1,28 @@
+<div class="about-page">
+  <nav class="breadcrumbs">
+    <%= link_to "Главная", root_path %> &gt;
+    <%= link_to "О компании", about_path %><% if local_assigns[:breadcrumb_current].present? %> &gt; <span class="breadcrumbs-current"><%= breadcrumb_current %></span><% end %>
+  </nav>
+
+  <header class="about-header">
+    <div class="about-header-inner">
+      <h1 class="about-header-title">О компании</h1>
+    </div>
+  </header>
+
+  <div class="about-body">
+    <aside class="about-sidebar">
+      <nav class="about-nav">
+        <%= link_to "Миссия", about_mission_path, class: "about-nav-link #{'about-nav-link--active' if current_page?(about_mission_path)}" %>
+        <%= link_to "Ценности", about_values_path, class: "about-nav-link #{'about-nav-link--active' if current_page?(about_values_path)}" %>
+        <%= link_to "Компетенции", about_competencies_path, class: "about-nav-link #{'about-nav-link--active' if current_page?(about_competencies_path)}" %>
+        <%= link_to "Вакансии", about_vacancies_path, class: "about-nav-link #{'about-nav-link--active' if current_page?(about_vacancies_path)}" %>
+        <%= link_to "Контакты", about_contacts_path, class: "about-nav-link #{'about-nav-link--active' if current_page?(about_contacts_path)}" %>
+      </nav>
+    </aside>
+
+    <main class="about-content">
+      <%= yield %>
+    </main>
+  </div>
+</div>

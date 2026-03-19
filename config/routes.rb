@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   get "about", to: "pages#about", as: :about
+  get "about/mission", to: "pages#about_mission", as: :about_mission
+  get "about/values", to: "pages#about_values", as: :about_values
+  get "about/competencies", to: "pages#about_competencies", as: :about_competencies
+  get "about/vacancies", to: "pages#about_vacancies", as: :about_vacancies
+  get "about/contacts", to: "pages#about_contacts", as: :about_contacts
   get "products", to: "pages#products", as: :products
+  get "products/gelicon-core/pricelist", to: "pages#product_gelicon_core_pricelist", as: :product_gelicon_core_pricelist
+  get "products/:slug", to: "pages#product", as: :product, constraints: { slug: /gelicon-erp|gelicon-utilities|gelicon-conference|gelios|atlant|gelicon-core|kapital-cse/ }
   get "services", to: "pages#services", as: :services
   get "experience", to: "pages#experience", as: :experience
   get "press", to: "pages#press", as: :press

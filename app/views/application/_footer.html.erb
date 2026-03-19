@@ -1,0 +1,74 @@
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="footer-title">О компании</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Миссия", about_mission_path %></li>
+            <li><%= link_to "Ценности", about_values_path %></li>
+            <li><%= link_to "Компетенции", about_competencies_path %></li>
+            <li><%= link_to "Вакансии", about_vacancies_path %></li>
+            <li><%= link_to "Контакты", about_contacts_path %></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Продукты и решения</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Gelicon ERP", product_path("gelicon-erp") %></li>
+            <li><%= link_to "Gelicon Utilities", product_path("gelicon-utilities") %></li>
+            <li><%= link_to "Gelicon Conference", product_path("gelicon-conference") %></li>
+            <li><%= link_to "Gelios", product_path("gelios") %></li>
+            <li><%= link_to "Атлант", product_path("atlant") %></li>
+            <li><%= link_to "Gelicon Core", product_path("gelicon-core") %></li>
+            <li><%= link_to "Капитал CSE", product_path("kapital-cse") %></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Услуги</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Создание уникальных заказных решений", services_path %></li>
+            <li><%= link_to "Разработка интернет-ресурсов", services_path %></li>
+            <li><%= link_to "Разработка мобильных приложений", services_path %></li>
+            <li><%= link_to "Интеграция информационных систем", services_path %></li>
+            <li><%= link_to "Сопровождение информационных систем", services_path %></li>
+            <li><%= link_to "ИТ-консалтинг", services_path %></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Опыт</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Наши проекты", experience_path %></li>
+            <li><%= link_to "Наши клиенты", experience_path %></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Пресс-центр</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Новости", press_path %></li>
+            <li><%= link_to "Статьи", press_path %></li>
+            <li><%= link_to "Видеолента", press_path %></li>
+            <li><%= link_to "События", press_path %></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Поддержка</h4>
+          <ul class="footer-links">
+            <li><%= link_to "Рекомендованные обновления", support_path %></li>
+            <li><%= link_to "Новости для пользователей", support_path %></li>
+            <li><%= link_to "Архив обновлений", support_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p class="footer-copyright">© «Геликон Про»</p>
+      <p class="footer-address">Пермь, ул. Лебедева 25Б, 3й этаж</p>
+      <p class="footer-phone">(342) 261-84-64 тел./факс · (342) 261-85-99 · (342) 261-86-69</p>
+      <a href="mailto:info@gelicon.biz" class="footer-email">info@gelicon.biz</a>
+      <p class="footer-sitemap"><%= link_to "Карта сайта", "#" %></p>
+    </div>
+  </div>
+</footer>
