@@ -786,6 +786,78 @@
   color: #555;
 }
 
+.about-competencies-content {
+  color: #5a5a5a;
+}
+
+.about-competencies-content .about-competencies-subtitle {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0.15rem 0 0.95rem 0;
+}
+
+.about-competencies-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #fff;
+  margin: 0 0 1.35rem 0;
+}
+
+.about-competencies-content .about-competencies-table thead th {
+  background: #e5e5e5;
+  color: #575757;
+  text-align: left;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.95rem 1.05rem;
+}
+
+.about-competencies-table th:first-child,
+.about-competencies-table td:first-child {
+  width: 23%;
+}
+
+.about-competencies-content .about-competencies-table tbody td {
+  border-bottom: 1px solid #ececec;
+  padding: 0.98rem 1.05rem;
+  vertical-align: middle;
+  font-size: 0.97rem;
+  line-height: 1.38;
+  color: #5d5d5d;
+}
+
+.about-competencies-content .about-competencies-table tbody td:first-child {
+  color: #5f5f5f;
+}
+
+.about-competencies-content .about-subheading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 1.1rem 0 0.65rem 0;
+}
+
+.about-competencies-content p {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: #5f5f5f;
+  margin: 0 0 0.95rem 0;
+}
+
+.about-competencies-content .about-dash-list {
+  padding: 0 0 0 1.55rem;
+  margin: 0.25rem 0 1.25rem 0;
+}
+
+.about-competencies-content .about-dash-list li {
+  padding: 0.05rem 0;
+  font-size: 1.01rem;
+  line-height: 1.42;
+  color: #5b5b5b;
+}
+
 .about-sidebar-links {
   margin-top: 2rem;
   padding-top: 1.5rem;
@@ -833,5 +905,31 @@
   .about-nav {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .about-competencies-table,
+  .about-competencies-table tbody,
+  .about-competencies-table tr,
+  .about-competencies-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .about-competencies-table thead {
+    display: none;
+  }
+
+  .about-competencies-table tr {
+    border-bottom: 1px solid #ececec;
+    padding: 0.8rem 0;
+  }
+
+  .about-competencies-table tbody td {
+    border-bottom: 0;
+    padding: 0.3rem 0;
+  }
+
+  .about-competencies-table tbody td:first-child {
+    font-weight: 600;
   }
 }
