@@ -25,7 +25,7 @@
         <%= link_to "Продукты и решения", products_path, class: "nav-link #{'nav-link--active' if (controller_name == 'pages' && (action_name == 'products' || action_name == 'product' || action_name == 'product_gelicon_core_pricelist'))}" %>
         <%= link_to "Услуги", services_path, class: "nav-link #{'nav-link--active' if current_page?(services_path)}" %>
         <%= link_to "Опыт", experience_path, class: "nav-link #{'nav-link--active' if current_page?(experience_path)}" %>
-        <%= link_to "Пресс-центр", press_path, class: "nav-link #{'nav-link--active' if current_page?(press_path)}" %>
+        <%= link_to "Пресс-центр", press_path, class: "nav-link #{'nav-link--active' if controller_name == 'press'}" %>
         <%= link_to "Поддержка", support_path, class: "nav-link #{'nav-link--active' if current_page?(support_path)}" %>
       </nav>
     </div>

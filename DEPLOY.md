@@ -1,113 +1,92 @@
-# Деплой на Ubuntu через Docker
+# Пересборка и деплой на сервере
 
-## 1. Подготовка сервера Ubuntu
+## Вариант 1: Kamal (рекомендуется)
 
-```bash
-# Обновить систему
-sudo apt update && sudo apt upgrade -y
-
-# Установить Docker
-curl -fsSL https://get.docker.com | sudo sh
-sudo usermod -aG docker $USER
-# Выйти и зайти снова, чтобы применить группу
-
-# Установить Docker Compose
-sudo apt install docker-compose-plugin -y
-```
-
-## 2. Клонирование репозитория
+Если сервер настроен через Kamal:
 
 ```bash
-cd /opt  # или другая папка
-sudo git clone https://github.com/ВАШ_ЮЗЕРНЕЙМ/ВАШ_РЕПО.git gelicon-pro
-cd gelicon-pro
+# Сборка образа и деплой
+bin/kamal deploy
+
+# Только пересборка без деплоя
+bin/kamal build push
+bin/kamal deploy
 ```
 
-## 3. Настройка переменных окружения
+Перед деплоем проверьте `config/deploy.yml` — укажите IP сервера и настройте registry.
+
+---
+
+## Вариант 2: Docker Compose
+
+Если на сервере используется Docker Compose:
 
 ```bash
-# Создать .env из примера
-cp .env.example .env
-
-# Отредактировать .env — вставить RAILS_MASTER_KEY
-# Ключ находится в config/master.key в вашей локальной копии
-nano .env
-```
-
-Содержимое `.env`:
-```
-RAILS_MASTER_KEY=ваш_ключ_из_config_master_key
-```
-
-> ⚠️ **Важно:** Не добавляйте `config/master.key` в Git! Файл уже в `.gitignore`.
-
-## 4. Сборка и запуск
-
-```bash
-# Сборка образа
-docker compose build
-
-# Запуск
-docker compose up -d
-
-# Проверка логов
-docker compose logs -f web
-```
-
-Приложение будет доступно на **http://IP_СЕРВЕРА:3000**
-
-## 5. Настройка Nginx (опционально, для порта 80)
-
-```bash
-sudo apt install nginx -y
-sudo nano /etc/nginx/sites-available/gelicon
-```
-
-Конфиг:
-```nginx
-server {
-    listen 80;
-    server_name ваш_домен.ru;
-
-    location / {
-        proxy_pass http://127.0.0.1:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-```
-
-```bash
-sudo ln -s /etc/nginx/sites-available/gelicon /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-## 6. Полезные команды
-
-```bash
-# Остановить
-docker compose down
-
-# Пересобрать после изменений
+# Подтянуть изменения
 git pull
+
+# Пересобрать образ и перезапустить
 docker compose build --no-cache
 docker compose up -d
 
-# Логи
-docker compose logs -f web
-
-# Консоль Rails
-docker compose exec web ./bin/rails console
+# Или одной командой
+docker compose up -d --build
 ```
 
-## 7. Обновление приложения
+---
+
+## Вариант 3: Ручной Docker
 
 ```bash
-cd /opt/gelicon-pro
 git pull
-docker compose build
-docker compose up -d
+
+# Собрать образ
+docker build -t ruby_on_rails .
+
+# Остановить старый контейнер
+docker stop ruby_on_rails
+docker rm ruby_on_rails
+
+# Запустить новый
+docker run -d -p 80:80 \
+  -e RAILS_MASTER_KEY=<значение из config/master.key> \
+  -v ruby_on_rails_storage:/rails/storage \
+  --name ruby_on_rails \
+  --restart unless-stopped \
+  ruby_on_rails
+```
+
+---
+
+## Вариант 4: Без Docker (Puma, systemd)
+
+```bash
+cd /path/to/Ruby_on_Rails
+
+git pull
+bundle install --without development test
+bin/rails assets:precompile
+bin/rails db:migrate  # если есть миграции
+
+# Перезапустить приложение
+sudo systemctl restart ruby_on_rails
+# или
+bundle exec pumactl restart
+```
+
+---
+
+## Миграции БД
+
+При наличии миграций:
+
+```bash
+# Kamal
+bin/kamal app exec "bin/rails db:migrate"
+
+# Docker Compose
+docker compose exec web bin/rails db:migrate
+
+# Docker
+docker exec ruby_on_rails bin/rails db:migrate
 ```

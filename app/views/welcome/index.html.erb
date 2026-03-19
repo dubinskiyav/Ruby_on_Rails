@@ -65,20 +65,15 @@
   <div class="container">
     <h2 class="section-title">Новости</h2>
     <div class="news-list">
-      <article class="news-item">
-        <time class="news-date" datetime="2025-12-17">17.12.2025</time>
-        <p class="news-text">Под конец года завершаются большинство проектов, в том числе происходит сдача интерактивных форм для портала госуслуг некоторых регионов. В частности, Иркутская область и Курская область.</p>
-      </article>
-      <article class="news-item">
-        <time class="news-date" datetime="2025-07-10">10.07.2025</time>
-        <p class="news-text">Завершён проект по доработке Автоматизированной информационной системы «Госуслуги» города Хабаровска.</p>
-      </article>
-      <article class="news-item">
-        <time class="news-date" datetime="2025-06-30">30.06.2025</time>
-        <p class="news-text">Мы возобновили сотрудничество с ведущим производителем кабельной продукции в России — Рыбинским кабельным заводом.</p>
-      </article>
+      <% News.published.limit(3).each do |item| %>
+        <article class="news-item">
+          <time class="news-date" datetime="<%= item.published_at&.iso8601 %>"><%= item.published_at&.strftime("%d.%m.%Y") %></time>
+          <p class="news-text"><%= item.summary.presence || item.body&.truncate(150) %></p>
+          <%= link_to "Читать далее", press_news_show_path(item.slug), class: "news-item-link" %>
+        </article>
+      <% end %>
     </div>
-    <%= link_to "Все новости", press_path, class: "btn btn-secondary" %>
+    <%= link_to "Все новости", press_news_path, class: "btn btn-secondary" %>
   </div>
 </section>
 

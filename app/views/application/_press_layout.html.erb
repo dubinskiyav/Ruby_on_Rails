@@ -1,0 +1,35 @@
+<div class="about-page press-page">
+  <nav class="breadcrumbs">
+    <%= link_to "Главная", root_path %> &gt;
+    <%= link_to "Пресс-центр", press_path %><% if local_assigns[:breadcrumb_parent].present? %> &gt; <%= link_to breadcrumb_parent[:text], breadcrumb_parent[:path], class: "breadcrumbs-link" %><% end %><% if local_assigns[:breadcrumb_current].present? %> &gt; <span class="breadcrumbs-current"><%= breadcrumb_current %></span><% end %>
+  </nav>
+
+  <header class="about-header">
+    <div class="about-header-inner">
+      <h1 class="about-header-title">Пресс-центр</h1>
+    </div>
+  </header>
+
+  <div class="about-body">
+    <aside class="about-sidebar">
+      <nav class="about-nav">
+        <%= link_to "Новости", press_news_path, class: "about-nav-link #{'about-nav-link--active' if controller_name == 'press' && action_name == 'news'}" %>
+        <%= link_to "Статьи", press_path, class: "about-nav-link" %>
+        <%= link_to "Видеолента", press_path, class: "about-nav-link" %>
+        <%= link_to "События", press_path, class: "about-nav-link" %>
+      </nav>
+      <% if local_assigns[:show_archive] %>
+        <div class="press-archive">
+          <h4 class="about-sidebar-links-title">Архив новостей</h4>
+          <%= form_with url: press_news_path, method: :get, local: true, class: "press-archive-form" do |f| %>
+            <%= f.select :year, [["все", "all"]] + (@archive_years || []).map { |y| [y, y] }, { selected: params[:year] || "all" }, { onchange: "this.form.submit()", class: "press-archive-select" } %>
+          <% end %>
+        </div>
+      <% end %>
+    </aside>
+
+    <main class="about-content">
+      <%= yield %>
+    </main>
+  </div>
+</div>

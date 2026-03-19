@@ -48,9 +48,6 @@ class PagesController < ApplicationController
   def experience
   end
 
-  def press
-  end
-
   def support
   end
 end

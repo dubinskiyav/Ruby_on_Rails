@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get "products/:slug", to: "pages#product", as: :product, constraints: { slug: /gelicon-erp|gelicon-utilities|gelicon-conference|gelios|atlant|gelicon-core|kapital-cse/ }
   get "services", to: "pages#services", as: :services
   get "experience", to: "pages#experience", as: :experience
-  get "press", to: "pages#press", as: :press
+  get "press", to: "press#index", as: :press
+  get "press/news", to: "press#news", as: :press_news
+  get "press/news/:slug", to: "press#news_show", as: :press_news_show
   get "support", to: "pages#support", as: :support
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

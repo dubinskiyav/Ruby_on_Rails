@@ -1,0 +1,21 @@
+<% content_for :title, "Новости - Пресс-центр - Геликон Про" %>
+
+<%= render layout: "application/press_layout", locals: { breadcrumb_current: "Новости", show_archive: true } do %>
+  <h2 class="about-page-title">Новости</h2>
+  <p><%= link_to "Подписаться на новости", "#", class: "press-subscribe-link" %></p>
+
+  <% if @news.any? %>
+    <div class="news-list">
+      <% @news.each do |item| %>
+        <article class="news-article">
+          <time class="news-article-date" datetime="<%= item.published_at&.iso8601 %>"><%= item.published_at&.strftime("%d.%m.%Y") %></time>
+          <h3 class="news-article-title"><%= item.title %></h3>
+          <p class="news-article-summary"><%= item.summary.presence || item.body&.truncate(200) %></p>
+          <%= link_to "Читать далее", press_news_show_path(item.slug), class: "news-article-link" %>
+        </article>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Новостей пока нет.</p>
+  <% end %>
+<% end %>
