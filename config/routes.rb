@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get "press", to: "press#index", as: :press
   get "press/news", to: "press#news", as: :press_news
   get "press/news/:slug", to: "press#news_show", as: :press_news_show
+  get "press/articles", to: "press#articles", as: :press_articles
+  get "press/articles/:slug", to: "press#article_show", as: :press_article_show
   get "support", to: "pages#support", as: :support
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

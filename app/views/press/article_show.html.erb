@@ -1,0 +1,12 @@
+<% content_for :title, "#{@article.title} - Статьи - Пресс-центр - Геликон Про" %>
+
+<%= render layout: "application/press_layout", locals: { breadcrumb_parent: { text: "Статьи", path: press_articles_path }, breadcrumb_current: @article.title } do %>
+  <article class="news-full">
+    <time class="news-article-date" datetime="<%= @article.published_at&.iso8601 %>"><%= @article.published_at&.strftime("%d.%m.%Y") %></time>
+    <h2 class="about-page-title"><%= @article.title %></h2>
+    <div class="news-full-body">
+      <%= simple_format(@article.body) %>
+    </div>
+    <%= link_to "← Все статьи", press_articles_path, class: "news-back-link" %>
+  </article>
+<% end %>

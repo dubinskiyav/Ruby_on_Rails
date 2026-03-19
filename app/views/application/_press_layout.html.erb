@@ -14,7 +14,7 @@
     <aside class="about-sidebar">
       <nav class="about-nav">
         <%= link_to "Новости", press_news_path, class: "about-nav-link #{'about-nav-link--active' if controller_name == 'press' && action_name == 'news'}" %>
-        <%= link_to "Статьи", press_path, class: "about-nav-link" %>
+        <%= link_to "Статьи", "/press/articles", class: "about-nav-link #{'about-nav-link--active' if controller_name == 'press' && %w[articles article_show].include?(action_name)}" %>
         <%= link_to "Видеолента", press_path, class: "about-nav-link" %>
         <%= link_to "События", press_path, class: "about-nav-link" %>
       </nav>

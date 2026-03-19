@@ -20,4 +20,12 @@ class PressController < ApplicationController
   def news_show
     @news_item = News.published.find_by!(slug: params[:slug])
   end
+
+  def articles
+    @articles = Article.published
+  end
+
+  def article_show
+    @article = Article.published.find_by!(slug: params[:slug])
+  end
 end

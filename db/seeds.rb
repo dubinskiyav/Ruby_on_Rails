@@ -32,21 +32,35 @@ def slug_from_title_and_date(_title, date_str, index)
 end
 
 require_relative "news_data"
+require_relative "articles_data"
 news_data = NEWS_DATA
+articles_data = ARTICLES_DATA
 
-# Очищаем старые данные и загружаем заново
-News.destroy_all
-
+# Обновляем или создаём записи по slug. Добавленные на сервере вручную — не трогаем.
 news_data.each_with_index do |(date_str, title, summary), index|
   slug = slug_from_title_and_date(title, date_str, index)
   body = FULL_BODIES[slug] || summary
 
-  News.create!(
-    slug: slug,
-    title: title,
-    summary: summary,
-    body: body,
-    published_at: Time.zone.parse(date_str.split(".").reverse.join("-")),
-    category: "news"
-  )
+  News.find_or_initialize_by(slug: slug).tap do |n|
+    n.assign_attributes(
+      title: title,
+      summary: summary,
+      body: body,
+      published_at: Time.zone.parse(date_str.split(".").reverse.join("-")),
+      category: "news"
+    )
+    n.save!
+  end
+end
+
+articles_data.each do |date_str, title, summary, slug|
+  Article.find_or_initialize_by(slug: slug).tap do |a|
+    a.assign_attributes(
+      title: title,
+      summary: summary,
+      body: summary,
+      published_at: Time.zone.parse(date_str.split(".").reverse.join("-"))
+    )
+    a.save!
+  end
 end
